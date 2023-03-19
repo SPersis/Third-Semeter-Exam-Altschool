@@ -28,7 +28,7 @@ pipeline {
         }
          stage ('Git clone Omnifood') {
             steps('git clone') {
-                git branch: 'main', url: 'https://github.com/SPersis/My-build.git'
+                git branch: 'main', url: 'https://github.com/SPersis/Third-Semeter-Exam-Altschool'
             }
         }
         stage ('Deploy Omnifood') {
@@ -42,6 +42,23 @@ pipeline {
                             sh "ssh ubuntu@54.159.20.135 kubectl create -f deployment.yml"
                         } catch(error){
                             sh "ssh  ubuntu@54.159.20.135 kubectl apply -f deployment.yml"
+                        }
+                    }
+                }
+            }
+        }
+        stage('Prometheus and Granfana Deployment') {
+            steps {
+                dir('deploy/kubernetes') {
+                    sshagent(['SSH']) {
+                        sh "scp -o strictHostKeyChecking=no -r manifests-monitoring ubuntu@54.159.20.135:/home/ubuntu"
+
+                        script {
+                            try {
+                                sh "ssh ubuntu@54.159.20.135 kubectl create -f manifests-monitoring/00-monitoring-ns.yaml"
+                            } catch(error) {
+                                sh "ssh ubuntu@54.159.20.135 kubectl apply -f manifests-monitoring/00-monitoring-ns.yaml"
+                            }
                         }
                     }
                 }

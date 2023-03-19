@@ -9,5 +9,4 @@ RUN All_script.sh {
 }
 
 socks-shop: http://sock-shop.k8s.spersislaravel.me./
-
 omnifood: http://omnifood.k8s.spersislaravel.me/

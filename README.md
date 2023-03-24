@@ -43,3 +43,8 @@ http://prometheus.k8s.spersislaravel.me/
 
 The bash script all_script.sh will run both Terrafrom Provisioning and Ansible configuration
 This involve Creating t2.Mediun Ubuntu server for KOP, t2.Micro Ubuntu server for worker node and t2.micor server for Jenkins
+
+
+<img width="1280" alt="Prometheus" src="https://user-images.githubusercontent.com/92315074/227433117-28101e65-e6fe-4c99-8527-e5cb8df1ffea.png">
+
+
